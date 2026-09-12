@@ -1,0 +1,2301 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inventario Spartak FC</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    color:#172033;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:linear-gradient(135deg,#061a3a,#0b4ea2);
+    color:white;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:15px;
+    opacity:.9;
+}
+
+/* ================= CONTENEDOR ================= */
+
+.contenedor{
+    width:95%;
+    max-width:1400px;
+    margin:25px auto;
+}
+
+/* ================= ESTADISTICAS ================= */
+
+.estadisticas{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.tarjeta{
+    background:white;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    border-left:6px solid #0b4ea2;
+}
+
+.tarjeta h3{
+    color:#5d6878;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.tarjeta p{
+    font-size:28px;
+    font-weight:bold;
+    color:#0b4ea2;
+}
+
+/* ================= PANELES ================= */
+
+.panel{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.panel h2{
+    color:#0b4ea2;
+    margin-bottom:20px;
+}
+
+/* ================= FORMULARIO ================= */
+
+.formulario{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.campo{
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+    font-weight:bold;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+input,
+select{
+    padding:12px;
+    border:1px solid #ccd3dd;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus,
+select:focus{
+    border-color:#0b4ea2;
+    box-shadow:0 0 0 2px rgba(11,78,162,.1);
+}
+
+/* ================= BOTONES ================= */
+
+.botones{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+button{
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-1px);
+    opacity:.9;
+}
+
+.btn-principal{
+    background:#0b4ea2;
+    color:white;
+}
+
+.btn-cancelar{
+    background:#777;
+    color:white;
+}
+
+.btn-editar{
+    background:#0b4ea2;
+    color:white;
+    padding:7px 10px;
+    font-size:12px;
+}
+
+.btn-eliminar{
+    background:#d62828;
+    color:white;
+    padding:7px 10px;
+    font-size:12px;
+}
+
+.btn-secundario{
+    background:#e7f0fb;
+    color:#0b4ea2;
+}
+
+/* ================= CATEGORIAS ================= */
+
+.gestion-categorias{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.gestion-categorias input{
+    flex:1;
+}
+
+.lista-categorias{
+    margin-top:15px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.categoria-admin{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    background:#f0f3f7;
+    padding:8px 10px;
+    border-radius:8px;
+}
+
+.categoria-admin button{
+    padding:5px 8px;
+    color:white;
+}
+
+.categoria-editar{
+    background:#0b4ea2;
+}
+
+.categoria-borrar{
+    background:#d62828;
+}
+
+/* ================= BUSCADOR ================= */
+
+.barra{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.barra input{
+    flex:1;
+}
+
+/* ================= TABLA ================= */
+
+.tabla-contenedor{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:950px;
+}
+
+th{
+    background:#0b4ea2;
+    color:white;
+    padding:14px;
+    text-align:left;
+}
+
+td{
+    padding:13px;
+    border-bottom:1px solid #e1e5eb;
+}
+
+tr:hover{
+    background:#f5f8fc;
+}
+
+.estado{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.bueno{
+    background:#d9f5e5;
+    color:#137333;
+}
+
+.regular{
+    background:#fff0c2;
+    color:#956500;
+}
+
+.malo{
+    background:#ffdada;
+    color:#a50000;
+}
+
+.bajo{
+    color:#c62828;
+    font-weight:bold;
+}
+
+.acciones{
+    display:flex;
+    gap:6px;
+}
+
+/* ================= MENSAJE ================= */
+
+.mensaje{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#0b4ea2;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    display:none;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    z-index:9999;
+}
+
+/* ================= ESTADO CONEXION ================= */
+
+.conexion{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    padding:10px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    z-index:9999;
+}
+
+.conectado{
+    background:#d9f5e5;
+    color:#137333;
+}
+
+.desconectado{
+    background:#ffdada;
+    color:#a50000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .estadisticas{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .formulario{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:24px;
+    }
+
+    .estadisticas{
+        grid-template-columns:1fr;
+    }
+
+    .formulario{
+        grid-template-columns:1fr;
+    }
+
+    .barra{
+        flex-direction:column;
+    }
+
+    .gestion-categorias{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>⚽ SPARTAK FC</h1>
+
+<p>Sistema de Inventario</p>
+
+</header>
+
+
+<div class="contenedor">
+
+
+<!-- ================= ESTADISTICAS ================= -->
+
+<div class="estadisticas">
+
+<div class="tarjeta">
+
+<h3>Total de artículos</h3>
+
+<p id="totalArticulos">0</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>Unidades disponibles</h3>
+
+<p id="totalUnidades">0</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>Stock bajo</h3>
+
+<p id="stockBajo">0</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>Valor del inventario</h3>
+
+<p id="valorInventario">$0</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= PRODUCTO ================= -->
+
+<div class="panel">
+
+<h2>📦 Registrar artículo</h2>
+
+
+<form id="formularioProducto">
+
+
+<div class="formulario">
+
+
+<div class="campo">
+
+<label>Nombre del artículo</label>
+
+<input
+type="text"
+id="nombre"
+placeholder="Ej: Balón de fútbol"
+required
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>Categoría</label>
+
+<select id="categoria" required>
+
+</select>
+
+</div>
+
+
+<div class="campo">
+
+<label>Cantidad</label>
+
+<input
+type="number"
+id="cantidad"
+min="0"
+placeholder="Ej: 10"
+required
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>Precio unitario</label>
+
+<input
+type="number"
+id="precio"
+min="0"
+placeholder="Ej: 50000"
+required
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>Estado</label>
+
+<select id="estado">
+
+<option value="Bueno">Bueno</option>
+
+<option value="Regular">Regular</option>
+
+<option value="Malo">Malo</option>
+
+</select>
+
+</div>
+
+
+<div class="campo">
+
+<label>Ubicación</label>
+
+<input
+type="text"
+id="ubicacion"
+placeholder="Ej: Bodega"
+>
+
+</div>
+
+
+<div
+class="campo"
+style="grid-column:1/-1;"
+>
+
+<label>Observaciones</label>
+
+<input
+type="text"
+id="observaciones"
+placeholder="Observaciones del artículo"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="botones">
+
+<button
+type="submit"
+class="btn-principal"
+id="btnGuardar"
+>
+➕ Agregar artículo
+</button>
+
+
+<button
+type="button"
+class="btn-cancelar"
+onclick="cancelarEdicion()"
+id="btnCancelar"
+style="display:none;"
+>
+Cancelar
+</button>
+
+</div>
+
+
+</form>
+
+</div>
+
+
+<!-- ================= CATEGORIAS ================= -->
+
+<div class="panel">
+
+<h2>🏷️ Administrar categorías</h2>
+
+
+<div class="gestion-categorias">
+
+<input
+type="text"
+id="nuevaCategoria"
+placeholder="Ej: Uniformes"
+>
+
+<button
+class="btn-principal"
+onclick="crearCategoria()"
+>
+➕ Crear categoría
+</button>
+
+</div>
+
+
+<div
+class="lista-categorias"
+id="listaCategorias"
+></div>
+
+</div>
+
+
+<!-- ================= INVENTARIO ================= -->
+
+<div class="panel">
+
+<h2>📋 Inventario Spartak FC</h2>
+
+
+<div class="barra">
+
+<input
+type="text"
+id="buscar"
+placeholder="🔎 Buscar artículo..."
+onkeyup="mostrarInventario()"
+>
+
+
+<select
+id="filtroCategoria"
+onchange="mostrarInventario()"
+>
+
+<option value="Todas">
+Todas las categorías
+</option>
+
+</select>
+
+</div>
+
+
+<div class="tabla-contenedor">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Artículo</th>
+
+<th>Categoría</th>
+
+<th>Cantidad</th>
+
+<th>Precio</th>
+
+<th>Estado</th>
+
+<th>Ubicación</th>
+
+<th>Observaciones</th>
+
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tablaInventario">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= ENTRADAS ================= -->
+
+<div class="panel">
+
+<h2>📥 Registrar entrada de mercancía</h2>
+
+
+<div class="formulario">
+
+
+<div class="campo">
+
+<label>Producto</label>
+
+<select id="productoEntrada"></select>
+
+</div>
+
+
+<div class="campo">
+
+<label>Cantidad</label>
+
+<input
+type="number"
+id="cantidadEntrada"
+min="1"
+placeholder="Cantidad recibida"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>Responsable</label>
+
+<input
+type="text"
+id="responsableEntrada"
+placeholder="Nombre"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="botones">
+
+<button
+class="btn-principal"
+onclick="registrarEntrada()"
+>
+📥 Registrar entrada
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= SALIDAS ================= -->
+
+<div class="panel">
+
+<h2>📤 Registrar salida / venta</h2>
+
+
+<div class="formulario">
+
+
+<div class="campo">
+
+<label>Producto</label>
+
+<select id="productoSalida"></select>
+
+</div>
+
+
+<div class="campo">
+
+<label>Cantidad</label>
+
+<input
+type="number"
+id="cantidadSalida"
+min="1"
+placeholder="Cantidad"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>Responsable</label>
+
+<input
+type="text"
+id="responsableSalida"
+placeholder="Nombre"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="botones">
+
+<button
+class="btn-principal"
+onclick="registrarSalida()"
+>
+📤 Registrar salida
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="mensaje"
+id="mensaje"
+>
+Operación realizada
+</div>
+
+
+<div
+id="estadoConexion"
+class="conexion desconectado"
+>
+🔴 Conectando...
+</div>
+
+
+<script>
+
+/* =====================================================
+   CONEXIÓN CON GOOGLE APPS SCRIPT
+===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxjFN0H4BVbjf4oGPN1K16OEE2fkZbBs4BVEa-fxpjuY6W4aI_E4lsmruJkj3HQDLfJ/exec";
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let inventario = [];
+
+let categorias = [];
+
+let editandoId = null;
+
+
+/* =====================================================
+   LLAMAR A GOOGLE APPS SCRIPT
+===================================================== */
+
+async function llamarAPI(datos){
+
+    try{
+
+        const respuesta = await fetch(
+            API_URL,
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"text/plain;charset=utf-8"
+                },
+
+                body:JSON.stringify(datos)
+            }
+        );
+
+
+        const texto = await respuesta.text();
+
+        const resultado = JSON.parse(texto);
+
+
+        document.getElementById(
+            "estadoConexion"
+        ).className =
+            "conexion conectado";
+
+
+        document.getElementById(
+            "estadoConexion"
+        ).textContent =
+            "🟢 Google Sheets conectado";
+
+
+        return resultado;
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        document.getElementById(
+            "estadoConexion"
+        ).className =
+            "conexion desconectado";
+
+
+        document.getElementById(
+            "estadoConexion"
+        ).textContent =
+            "🔴 Error de conexión";
+
+
+        mostrarMensaje(
+            "No se pudo conectar con Google Sheets"
+        );
+
+
+        return {
+            ok:false,
+            mensaje:error.message
+        };
+
+    }
+
+}
+
+
+/* =====================================================
+   MENSAJE
+===================================================== */
+
+function mostrarMensaje(texto){
+
+    const mensaje =
+        document.getElementById("mensaje");
+
+
+    mensaje.textContent = texto;
+
+    mensaje.style.display = "block";
+
+
+    setTimeout(function(){
+
+        mensaje.style.display = "none";
+
+    },3000);
+
+}
+
+
+/* =====================================================
+   CARGAR TODO
+===================================================== */
+
+async function cargarDatos(){
+
+    await cargarCategorias();
+
+    await cargarInventario();
+
+}
+
+
+/* =====================================================
+   CARGAR INVENTARIO
+===================================================== */
+
+async function cargarInventario(){
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"obtenerInventario"
+
+        });
+
+
+    if(
+        Array.isArray(resultado)
+    ){
+
+        inventario =
+            resultado;
+
+    }else{
+
+        inventario = [];
+
+    }
+
+
+    mostrarInventario();
+
+    cargarSelectProductos();
+
+}
+
+
+/* =====================================================
+   CARGAR CATEGORIAS
+===================================================== */
+
+async function cargarCategorias(){
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"obtenerCategorias"
+
+        });
+
+
+    if(
+        Array.isArray(resultado)
+    ){
+
+        categorias =
+            resultado;
+
+    }else{
+
+        categorias = [];
+
+    }
+
+
+    cargarCategoriasSelect();
+
+    mostrarCategoriasAdmin();
+
+}
+
+
+/* =====================================================
+   SELECT CATEGORIAS
+===================================================== */
+
+function cargarCategoriasSelect(){
+
+    const select =
+        document.getElementById("categoria");
+
+
+    const filtro =
+        document.getElementById("filtroCategoria");
+
+
+    select.innerHTML = "";
+
+
+    filtro.innerHTML =
+        '<option value="Todas">Todas las categorías</option>';
+
+
+    categorias.forEach(function(item){
+
+        const opcion =
+            document.createElement("option");
+
+
+        opcion.value =
+            item.categoria;
+
+
+        opcion.textContent =
+            item.categoria;
+
+
+        select.appendChild(opcion);
+
+
+        const opcionFiltro =
+            document.createElement("option");
+
+
+        opcionFiltro.value =
+            item.categoria;
+
+
+        opcionFiltro.textContent =
+            item.categoria;
+
+
+        filtro.appendChild(
+            opcionFiltro
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   MOSTRAR CATEGORIAS
+===================================================== */
+
+function mostrarCategoriasAdmin(){
+
+    const contenedor =
+        document.getElementById(
+            "listaCategorias"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    categorias.forEach(function(item){
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "categoria-admin";
+
+
+        div.innerHTML = `
+
+            <span>${escapeHTML(item.categoria)}</span>
+
+            <button
+                class="categoria-editar"
+                onclick="editarCategoria('${item.id}')"
+            >
+                ✏️
+            </button>
+
+            <button
+                class="categoria-borrar"
+                onclick="eliminarCategoria('${item.id}')"
+            >
+                🗑
+            </button>
+
+        `;
+
+
+        contenedor.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   CREAR CATEGORIA
+===================================================== */
+
+async function crearCategoria(){
+
+    const input =
+        document.getElementById(
+            "nuevaCategoria"
+        );
+
+
+    const nombre =
+        input.value.trim();
+
+
+    if(!nombre){
+
+        alert(
+            "Escribe el nombre de la categoría."
+        );
+
+        return;
+
+    }
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"agregarCategoria",
+
+            categoria:nombre
+
+        });
+
+
+    if(resultado.ok){
+
+        input.value = "";
+
+        mostrarMensaje(
+            "Categoría creada correctamente"
+        );
+
+
+        await cargarCategorias();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo crear la categoría"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   EDITAR CATEGORIA
+===================================================== */
+
+async function editarCategoria(id){
+
+    const categoria =
+        categorias.find(function(item){
+
+            return String(item.id) ===
+                   String(id);
+
+        });
+
+
+    if(!categoria){
+
+        return;
+
+    }
+
+
+    const nuevoNombre =
+        prompt(
+            "Nuevo nombre de la categoría:",
+            categoria.categoria
+        );
+
+
+    if(
+        nuevoNombre === null
+    ){
+
+        return;
+
+    }
+
+
+    const nombre =
+        nuevoNombre.trim();
+
+
+    if(!nombre){
+
+        alert(
+            "El nombre no puede estar vacío."
+        );
+
+        return;
+
+    }
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"editarCategoria",
+
+            id:id,
+
+            categoria:nombre
+
+        });
+
+
+    if(resultado.ok){
+
+        mostrarMensaje(
+            "Categoría actualizada"
+        );
+
+
+        await cargarCategorias();
+
+        await cargarInventario();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo editar"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ELIMINAR CATEGORIA
+===================================================== */
+
+async function eliminarCategoria(id){
+
+    const categoria =
+        categorias.find(function(item){
+
+            return String(item.id) ===
+                   String(id);
+
+        });
+
+
+    if(!categoria){
+
+        return;
+
+    }
+
+
+    const confirmar =
+        confirm(
+            "¿Seguro que quieres eliminar la categoría " +
+            categoria.categoria +
+            "?"
+        );
+
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"eliminarCategoria",
+
+            id:id,
+
+            categoria:
+                categoria.categoria
+
+        });
+
+
+    if(resultado.ok){
+
+        mostrarMensaje(
+            "Categoría eliminada"
+        );
+
+
+        await cargarCategorias();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo eliminar"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CREAR / EDITAR PRODUCTO
+===================================================== */
+
+document
+.getElementById("formularioProducto")
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const datos = {
+
+            producto:
+                document
+                .getElementById("nombre")
+                .value
+                .trim(),
+
+            categoria:
+                document
+                .getElementById("categoria")
+                .value,
+
+            cantidad:
+                Number(
+                    document
+                    .getElementById("cantidad")
+                    .value
+                ),
+
+            precio:
+                Number(
+                    document
+                    .getElementById("precio")
+                    .value
+                ),
+
+            estado:
+                document
+                .getElementById("estado")
+                .value,
+
+            ubicacion:
+                document
+                .getElementById("ubicacion")
+                .value
+                .trim(),
+
+            observaciones:
+                document
+                .getElementById("observaciones")
+                .value
+                .trim()
+
+        };
+
+
+        if(!datos.producto){
+
+            alert(
+                "Escribe el nombre del producto."
+            );
+
+            return;
+
+        }
+
+
+        if(editandoId !== null){
+
+            datos.accion =
+                "editarProducto";
+
+            datos.id =
+                editandoId;
+
+
+        }else{
+
+            datos.accion =
+                "agregarProducto";
+
+        }
+
+
+        const resultado =
+            await llamarAPI(datos);
+
+
+        if(resultado.ok){
+
+            mostrarMensaje(
+                resultado.mensaje
+            );
+
+
+            limpiarFormulario();
+
+            await cargarInventario();
+
+        }else{
+
+            alert(
+                resultado.mensaje ||
+                "No se pudo guardar"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOSTRAR INVENTARIO
+===================================================== */
+
+function mostrarInventario(){
+
+    const tabla =
+        document.getElementById(
+            "tablaInventario"
+        );
+
+
+    const busqueda =
+        document
+        .getElementById("buscar")
+        .value
+        .toLowerCase();
+
+
+    const filtro =
+        document
+        .getElementById("filtroCategoria")
+        .value;
+
+
+    tabla.innerHTML = "";
+
+
+    const resultados =
+        inventario.filter(function(producto){
+
+            const nombre =
+                String(
+                    producto.producto || ""
+                )
+                .toLowerCase();
+
+
+            const categoria =
+                String(
+                    producto.categoria || ""
+                )
+                .toLowerCase();
+
+
+            const ubicacion =
+                String(
+                    producto.ubicacion || ""
+                )
+                .toLowerCase();
+
+
+            const coincideBusqueda =
+
+                nombre.includes(busqueda) ||
+
+                categoria.includes(busqueda) ||
+
+                ubicacion.includes(busqueda);
+
+
+            const coincideCategoria =
+
+                filtro === "Todas" ||
+
+                producto.categoria === filtro;
+
+
+            return (
+                coincideBusqueda &&
+                coincideCategoria
+            );
+
+        });
+
+
+    resultados.forEach(function(producto){
+
+        const fila =
+            document.createElement("tr");
+
+
+        let claseEstado =
+            "bueno";
+
+
+        if(
+            producto.estado === "Regular"
+        ){
+
+            claseEstado =
+                "regular";
+
+        }
+
+
+        if(
+            producto.estado === "Malo"
+        ){
+
+            claseEstado =
+                "malo";
+
+        }
+
+
+        const cantidad =
+            Number(
+                producto.cantidad
+            ) || 0;
+
+
+        const precio =
+            Number(
+                producto.precio
+            ) || 0;
+
+
+        const claseCantidad =
+            cantidad <= 3
+            ? "bajo"
+            : "";
+
+
+        fila.innerHTML = `
+
+            <td>
+                ${escapeHTML(producto.id)}
+            </td>
+
+            <td>
+                <strong>
+                    ${escapeHTML(producto.producto)}
+                </strong>
+            </td>
+
+            <td>
+                ${escapeHTML(producto.categoria)}
+            </td>
+
+            <td class="${claseCantidad}">
+
+                ${cantidad}
+
+                ${
+                    cantidad <= 3
+                    ? " ⚠️"
+                    : ""
+                }
+
+            </td>
+
+            <td>
+                $${formatearNumero(precio)}
+            </td>
+
+            <td>
+
+                <span
+                    class="estado ${claseEstado}"
+                >
+
+                    ${escapeHTML(producto.estado)}
+
+                </span>
+
+            </td>
+
+            <td>
+                ${escapeHTML(producto.ubicacion || "-")}
+            </td>
+
+            <td>
+                ${escapeHTML(producto.observaciones || "-")}
+            </td>
+
+            <td>
+
+                <div class="acciones">
+
+                    <button
+                        class="btn-editar"
+                        onclick="editarProducto('${producto.id}')"
+                    >
+                        ✏️ Editar
+                    </button>
+
+
+                    <button
+                        class="btn-eliminar"
+                        onclick="eliminarProducto('${producto.id}')"
+                    >
+                        🗑 Eliminar
+                    </button>
+
+                </div>
+
+            </td>
+
+        `;
+
+
+        tabla.appendChild(fila);
+
+    });
+
+
+    actualizarEstadisticas();
+
+}
+
+
+/* =====================================================
+   EDITAR PRODUCTO
+===================================================== */
+
+function editarProducto(id){
+
+    const producto =
+        inventario.find(function(item){
+
+            return String(item.id) ===
+                   String(id);
+
+        });
+
+
+    if(!producto){
+
+        return;
+
+    }
+
+
+    editandoId =
+        producto.id;
+
+
+    document.getElementById(
+        "nombre"
+    ).value =
+        producto.producto;
+
+
+    document.getElementById(
+        "categoria"
+    ).value =
+        producto.categoria;
+
+
+    document.getElementById(
+        "cantidad"
+    ).value =
+        producto.cantidad;
+
+
+    document.getElementById(
+        "precio"
+    ).value =
+        producto.precio;
+
+
+    document.getElementById(
+        "estado"
+    ).value =
+        producto.estado;
+
+
+    document.getElementById(
+        "ubicacion"
+    ).value =
+        producto.ubicacion || "";
+
+
+    document.getElementById(
+        "observaciones"
+    ).value =
+        producto.observaciones || "";
+
+
+    document.getElementById(
+        "btnGuardar"
+    ).textContent =
+        "💾 Guardar cambios";
+
+
+    document.getElementById(
+        "btnCancelar"
+    ).style.display =
+        "inline-block";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   ELIMINAR PRODUCTO
+===================================================== */
+
+async function eliminarProducto(id){
+
+    const producto =
+        inventario.find(function(item){
+
+            return String(item.id) ===
+                   String(id);
+
+        });
+
+
+    if(!producto){
+
+        return;
+
+    }
+
+
+    const confirmar =
+        confirm(
+            "¿Seguro que quieres eliminar " +
+            producto.producto +
+            "?"
+        );
+
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"eliminarProducto",
+
+            id:id
+
+        });
+
+
+    if(resultado.ok){
+
+        mostrarMensaje(
+            "Artículo eliminado"
+        );
+
+
+        await cargarInventario();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo eliminar"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CANCELAR EDICION
+===================================================== */
+
+function cancelarEdicion(){
+
+    limpiarFormulario();
+
+}
+
+
+/* =====================================================
+   LIMPIAR FORMULARIO
+===================================================== */
+
+function limpiarFormulario(){
+
+    document
+    .getElementById(
+        "formularioProducto"
+    )
+    .reset();
+
+
+    editandoId = null;
+
+
+    document.getElementById(
+        "btnGuardar"
+    ).textContent =
+        "➕ Agregar artículo";
+
+
+    document.getElementById(
+        "btnCancelar"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   SELECT DE PRODUCTOS
+===================================================== */
+
+function cargarSelectProductos(){
+
+    const entrada =
+        document.getElementById(
+            "productoEntrada"
+        );
+
+
+    const salida =
+        document.getElementById(
+            "productoSalida"
+        );
+
+
+    entrada.innerHTML =
+        '<option value="">Seleccione producto</option>';
+
+
+    salida.innerHTML =
+        '<option value="">Seleccione producto</option>';
+
+
+    inventario.forEach(function(producto){
+
+        const opcionEntrada =
+            document.createElement("option");
+
+
+        opcionEntrada.value =
+            producto.id;
+
+
+        opcionEntrada.textContent =
+            producto.producto +
+            " — Stock: " +
+            producto.cantidad;
+
+
+        entrada.appendChild(
+            opcionEntrada
+        );
+
+
+        const opcionSalida =
+            document.createElement("option");
+
+
+        opcionSalida.value =
+            producto.id;
+
+
+        opcionSalida.textContent =
+            producto.producto +
+            " — Stock: " +
+            producto.cantidad;
+
+
+        salida.appendChild(
+            opcionSalida
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   REGISTRAR ENTRADA
+===================================================== */
+
+async function registrarEntrada(){
+
+    const idProducto =
+        document.getElementById(
+            "productoEntrada"
+        ).value;
+
+
+    const cantidad =
+        Number(
+            document.getElementById(
+                "cantidadEntrada"
+            ).value
+        );
+
+
+    const responsable =
+        document.getElementById(
+            "responsableEntrada"
+        ).value.trim();
+
+
+    if(!idProducto){
+
+        alert(
+            "Selecciona un producto."
+        );
+
+        return;
+
+    }
+
+
+    if(cantidad <= 0){
+
+        alert(
+            "La cantidad debe ser mayor que 0."
+        );
+
+        return;
+
+    }
+
+
+    const producto =
+        inventario.find(function(item){
+
+            return String(item.id) ===
+                   String(idProducto);
+
+        });
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"registrarEntrada",
+
+            idProducto:idProducto,
+
+            producto:
+                producto
+                ? producto.producto
+                : "",
+
+            cantidad:cantidad,
+
+            responsable:responsable
+
+        });
+
+
+    if(resultado.ok){
+
+        mostrarMensaje(
+            "Entrada registrada correctamente"
+        );
+
+
+        document.getElementById(
+            "cantidadEntrada"
+        ).value = "";
+
+
+        await cargarInventario();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo registrar la entrada"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   REGISTRAR SALIDA
+===================================================== */
+
+async function registrarSalida(){
+
+    const idProducto =
+        document.getElementById(
+            "productoSalida"
+        ).value;
+
+
+    const cantidad =
+        Number(
+            document.getElementById(
+                "cantidadSalida"
+            ).value
+        );
+
+
+    const responsable =
+        document.getElementById(
+            "responsableSalida"
+        ).value.trim();
+
+
+    if(!idProducto){
+
+        alert(
+            "Selecciona un producto."
+        );
+
+        return;
+
+    }
+
+
+    if(cantidad <= 0){
+
+        alert(
+            "La cantidad debe ser mayor que 0."
+        );
+
+        return;
+
+    }
+
+
+    const producto =
+        inventario.find(function(item){
+
+            return String(item.id) ===
+                   String(idProducto);
+
+        });
+
+
+    const resultado =
+        await llamarAPI({
+
+            accion:"registrarSalida",
+
+            idProducto:idProducto,
+
+            producto:
+                producto
+                ? producto.producto
+                : "",
+
+            cantidad:cantidad,
+
+            responsable:responsable
+
+        });
+
+
+    if(resultado.ok){
+
+        mostrarMensaje(
+            "Salida registrada correctamente"
+        );
+
+
+        document.getElementById(
+            "cantidadSalida"
+        ).value = "";
+
+
+        await cargarInventario();
+
+    }else{
+
+        alert(
+            resultado.mensaje ||
+            "No se pudo registrar la salida"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ESTADISTICAS
+===================================================== */
+
+function actualizarEstadisticas(){
+
+    const totalArticulos =
+        inventario.length;
+
+
+    const totalUnidades =
+        inventario.reduce(
+            function(total,producto){
+
+                return total +
+                    (
+                        Number(
+                            producto.cantidad
+                        ) || 0
+                    );
+
+            },
+            0
+        );
+
+
+    const productosBajos =
+        inventario.filter(
+            function(producto){
+
+                return (
+                    Number(
+                        producto.cantidad
+                    ) || 0
+                ) <= 3;
+
+            }
+        ).length;
+
+
+    const valor =
+        inventario.reduce(
+            function(total,producto){
+
+                return total +
+
+                    (
+                        (
+                            Number(
+                                producto.cantidad
+                            ) || 0
+                        )
+
+                        *
+
+                        (
+                            Number(
+                                producto.precio
+                            ) || 0
+                        )
+                    );
+
+            },
+            0
+        );
+
+
+    document.getElementById(
+        "totalArticulos"
+    ).textContent =
+        totalArticulos;
+
+
+    document.getElementById(
+        "totalUnidades"
+    ).textContent =
+        totalUnidades;
+
+
+    document.getElementById(
+        "stockBajo"
+    ).textContent =
+        productosBajos;
+
+
+    document.getElementById(
+        "valorInventario"
+    ).textContent =
+        "$" +
+        formatearNumero(valor);
+
+}
+
+
+/* =====================================================
+   FORMATO
+===================================================== */
+
+function formatearNumero(numero){
+
+    return Number(numero)
+        .toLocaleString("es-CO");
+
+}
+
+
+/* =====================================================
+   SEGURIDAD PARA MOSTRAR TEXTO
+===================================================== */
+
+function escapeHTML(valor){
+
+    return String(
+        valor ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+cargarDatos();
+
+</script>
+
+</body>
+
+</html>
+```
