@@ -1,9 +1,6 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,907 +12,1117 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#eef3f8;
+    background:#eef4ff;
     color:#172033;
 }
 
-/* ================= HEADER ================= */
+/* LOGIN */
 
-header{
-    background:linear-gradient(135deg,#061a3a,#0b4ea2);
-    color:white;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
+#loginScreen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#061a49,#0b4ecb);
+    padding:20px;
 }
 
-header h1{
-    font-size:32px;
-    margin-bottom:8px;
-}
-
-header p{
-    font-size:15px;
-    opacity:.9;
-}
-
-/* ================= CONTENEDOR ================= */
-
-.contenedor{
-    width:95%;
-    max-width:1400px;
-    margin:25px auto;
-}
-
-/* ================= ESTADISTICAS ================= */
-
-.estadisticas{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:25px;
-}
-
-.tarjeta{
+.loginBox{
     background:white;
-    border-radius:15px;
-    padding:22px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-    border-left:6px solid #0b4ea2;
+    width:100%;
+    max-width:420px;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 50px rgba(0,0,0,.3);
+    text-align:center;
 }
 
-.tarjeta h3{
-    color:#5d6878;
-    font-size:14px;
-    margin-bottom:10px;
-}
-
-.tarjeta p{
+.logo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin:auto;
+    background:#063b9e;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
     font-size:28px;
     font-weight:bold;
-    color:#0b4ea2;
+    border:6px solid #e5efff;
 }
 
-/* ================= PANELES ================= */
+.loginBox h1{
+    color:#063b9e;
+    margin:20px 0 5px;
+}
 
-.panel{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+.loginBox p{
+    color:#666;
     margin-bottom:25px;
 }
 
-.panel h2{
-    color:#0b4ea2;
-    margin-bottom:20px;
-}
-
-/* ================= FORMULARIO ================= */
-
-.formulario{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.campo{
-    display:flex;
-    flex-direction:column;
-}
-
-.campo label{
-    font-weight:bold;
-    margin-bottom:6px;
-    font-size:14px;
-}
-
-input,
-select{
+input,select,textarea{
+    width:100%;
     padding:12px;
-    border:1px solid #ccd3dd;
+    border:1px solid #ccd5e5;
     border-radius:8px;
-    outline:none;
-    font-size:14px;
-}
-
-input:focus,
-select:focus{
-    border-color:#0b4ea2;
-    box-shadow:0 0 0 2px rgba(11,78,162,.1);
-}
-
-/* ================= BOTONES ================= */
-
-.botones{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+    margin-top:6px;
+    margin-bottom:15px;
+    font-size:15px;
 }
 
 button{
     border:none;
-    padding:12px 18px;
     border-radius:8px;
+    padding:11px 16px;
     cursor:pointer;
     font-weight:bold;
-    transition:.2s;
 }
 
-button:hover{
-    transform:translateY(-1px);
-    opacity:.9;
-}
-
-.btn-principal{
-    background:#0b4ea2;
+.btnBlue{
+    background:#0757d5;
     color:white;
 }
 
-.btn-cancelar{
-    background:#777;
-    color:white;
+.btnBlue:hover{
+    background:#043fa0;
 }
 
-.btn-editar{
-    background:#0b4ea2;
-    color:white;
-    padding:7px 10px;
-    font-size:12px;
-}
-
-.btn-eliminar{
+.btnRed{
     background:#d62828;
     color:white;
-    padding:7px 10px;
-    font-size:12px;
 }
 
-.btn-secundario{
-    background:#e7f0fb;
-    color:#0b4ea2;
+.btnGreen{
+    background:#159447;
+    color:white;
 }
 
-/* ================= CATEGORIAS ================= */
-
-.gestion-categorias{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
+.btnGray{
+    background:#697586;
+    color:white;
 }
 
-.gestion-categorias input{
-    flex:1;
+.loginButton{
+    width:100%;
+    padding:14px;
+    font-size:16px;
 }
 
-.lista-categorias{
-    margin-top:15px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+#errorLogin{
+    color:#d62828;
+    margin-top:10px;
+    font-weight:bold;
 }
 
-.categoria-admin{
+/* APP */
+
+#app{
+    display:none;
+}
+
+header{
+    background:linear-gradient(90deg,#041a45,#0757d5);
+    color:white;
+    padding:18px 25px;
     display:flex;
     align-items:center;
-    gap:7px;
-    background:#f0f3f7;
-    padding:8px 10px;
-    border-radius:8px;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
-.categoria-admin button{
-    padding:5px 8px;
+.headerTitle{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.headerLogo{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:white;
+    color:#063b9e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.headerTitle h1{
+    font-size:23px;
+}
+
+.headerTitle small{
+    opacity:.85;
+}
+
+.userInfo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.roleBadge{
+    background:white;
+    color:#0757d5;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.logout{
+    background:#d62828;
     color:white;
 }
 
-.categoria-editar{
-    background:#0b4ea2;
-}
+/* MENU */
 
-.categoria-borrar{
-    background:#d62828;
-}
-
-/* ================= BUSCADOR ================= */
-
-.barra{
+nav{
+    background:white;
+    padding:10px;
     display:flex;
-    gap:10px;
+    gap:8px;
+    flex-wrap:wrap;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+nav button{
+    background:#edf3ff;
+    color:#073b91;
+}
+
+nav button:hover{
+    background:#0757d5;
+    color:white;
+}
+
+main{
+    padding:25px;
+    max-width:1400px;
+    margin:auto;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+h2{
+    color:#063b9e;
     margin-bottom:20px;
 }
 
-.barra input{
-    flex:1;
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+    margin-bottom:25px;
 }
 
-/* ================= TABLA ================= */
+.card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-.tabla-contenedor{
+.card h3{
+    color:#667085;
+    font-size:14px;
+}
+
+.card strong{
+    font-size:30px;
+    color:#0757d5;
+    display:block;
+    margin-top:8px;
+}
+
+/* FORM */
+
+.panel{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    margin-bottom:22px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.formButtons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* TABLE */
+
+.tableContainer{
     overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:950px;
+    background:white;
 }
 
 th{
-    background:#0b4ea2;
+    background:#0757d5;
     color:white;
-    padding:14px;
+    padding:12px;
     text-align:left;
 }
 
 td{
-    padding:13px;
-    border-bottom:1px solid #e1e5eb;
+    padding:11px;
+    border-bottom:1px solid #e5e7eb;
 }
 
 tr:hover{
-    background:#f5f8fc;
+    background:#f5f8ff;
 }
 
+.actions{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+}
+
+.actions button{
+    padding:7px 9px;
+    font-size:12px;
+}
+
+/* ESTADO */
+
 .estado{
-    padding:6px 10px;
-    border-radius:20px;
+    padding:5px 9px;
+    border-radius:15px;
     font-size:12px;
     font-weight:bold;
 }
 
-.bueno{
-    background:#d9f5e5;
+.estadoBueno{
+    background:#dff7e7;
     color:#137333;
 }
 
-.regular{
+.estadoBajo{
     background:#fff0c2;
-    color:#956500;
+    color:#8a6100;
 }
 
-.malo{
+.estadoAgotado{
     background:#ffdada;
     color:#a50000;
 }
 
-.bajo{
-    color:#c62828;
-    font-weight:bold;
-}
+/* MENSAJES */
 
-.acciones{
-    display:flex;
-    gap:6px;
-}
-
-/* ================= MENSAJE ================= */
-
-.mensaje{
+#mensaje{
     position:fixed;
     right:20px;
     bottom:20px;
-    background:#0b4ea2;
+    background:#073b91;
     color:white;
     padding:15px 20px;
     border-radius:10px;
     display:none;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
-    z-index:9999;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
-/* ================= ESTADO CONEXION ================= */
-
-.conexion{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    padding:10px 15px;
-    border-radius:20px;
+#conexion{
     font-size:13px;
-    font-weight:bold;
-    z-index:9999;
-}
-
-.conectado{
-    background:#d9f5e5;
+    padding:8px 15px;
+    background:#e8f5e9;
     color:#137333;
+    border-radius:20px;
+    display:inline-block;
+    margin-bottom:15px;
 }
 
-.desconectado{
-    background:#ffdada;
-    color:#a50000;
+/* SOLO ADMIN */
+
+.adminOnly{
+    display:none;
 }
 
-/* ================= RESPONSIVE ================= */
+body.esAdmin .adminOnly{
+    display:block;
+}
 
-@media(max-width:900px){
+.adminButton{
+    display:none;
+}
 
-    .estadisticas{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .formulario{
-        grid-template-columns:repeat(2,1fr);
-    }
-
+body.esAdmin .adminButton{
+    display:inline-block;
 }
 
 @media(max-width:600px){
 
-    header h1{
-        font-size:24px;
+    header{
+        padding:15px;
     }
 
-    .estadisticas{
-        grid-template-columns:1fr;
+    .headerTitle h1{
+        font-size:18px;
     }
 
-    .formulario{
-        grid-template-columns:1fr;
+    main{
+        padding:15px;
     }
 
-    .barra{
-        flex-direction:column;
-    }
-
-    .gestion-categorias{
-        flex-direction:column;
+    .loginBox{
+        padding:25px;
     }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen">
+
+    <div class="loginBox">
+
+        <div class="logo">
+            SFC
+        </div>
+
+        <h1>SPARTAK FC</h1>
+
+        <p>Sistema de Inventario</p>
+
+        <label>Usuario</label>
+        <input
+            type="text"
+            id="loginUsuario"
+            placeholder="Escribe tu usuario"
+        >
+
+        <label>Contraseña</label>
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Escribe tu contraseña"
+            onkeydown="if(event.key==='Enter') iniciarSesion()"
+        >
+
+        <button
+            class="btnBlue loginButton"
+            onclick="iniciarSesion()"
+        >
+            INICIAR SESIÓN
+        </button>
+
+        <div id="errorLogin"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APLICACIÓN ================= -->
+
+<div id="app">
 
 <header>
 
-<h1>⚽ SPARTAK FC</h1>
+    <div class="headerTitle">
 
-<p>Sistema de Inventario</p>
+        <div class="headerLogo">
+            SFC
+        </div>
+
+        <div>
+            <h1>SPARTAK FC</h1>
+            <small>Sistema de Inventario</small>
+        </div>
+
+    </div>
+
+    <div class="userInfo">
+
+        <span id="usuarioActual"></span>
+
+        <span
+            class="roleBadge"
+            id="rolActual"
+        ></span>
+
+        <button
+            class="logout"
+            onclick="cerrarSesion()"
+        >
+            Cerrar sesión
+        </button>
+
+    </div>
 
 </header>
 
 
-<div class="contenedor">
+<!-- ================= MENU ================= -->
+
+<nav>
+
+    <button onclick="mostrarSeccion('inicio')">
+        🏠 Inicio
+    </button>
+
+    <button onclick="mostrarSeccion('inventario')">
+        📦 Inventario
+    </button>
+
+    <button onclick="mostrarSeccion('entradas')">
+        📥 Entradas
+    </button>
+
+    <button onclick="mostrarSeccion('salidas')">
+        📤 Salidas
+    </button>
+
+    <button
+        class="adminButton"
+        onclick="mostrarSeccion('categorias')"
+    >
+        🗂️ Categorías
+    </button>
+
+    <button
+        class="adminButton"
+        onclick="mostrarSeccion('usuarios')"
+    >
+        👥 Usuarios
+    </button>
+
+</nav>
 
 
-<!-- ================= ESTADISTICAS ================= -->
+<main>
 
-<div class="estadisticas">
-
-<div class="tarjeta">
-
-<h3>Total de artículos</h3>
-
-<p id="totalArticulos">0</p>
-
+<div id="conexion">
+    🟡 Conectando con Google Sheets...
 </div>
 
 
-<div class="tarjeta">
+<!-- ================= INICIO ================= -->
 
-<h3>Unidades disponibles</h3>
-
-<p id="totalUnidades">0</p>
-
-</div>
-
-
-<div class="tarjeta">
-
-<h3>Stock bajo</h3>
-
-<p id="stockBajo">0</p>
-
-</div>
-
-
-<div class="tarjeta">
-
-<h3>Valor del inventario</h3>
-
-<p id="valorInventario">$0</p>
-
-</div>
-
-</div>
-
-
-<!-- ================= PRODUCTO ================= -->
-
-<div class="panel">
-
-<h2>📦 Registrar artículo</h2>
-
-
-<form id="formularioProducto">
-
-
-<div class="formulario">
-
-
-<div class="campo">
-
-<label>Nombre del artículo</label>
-
-<input
-type="text"
-id="nombre"
-placeholder="Ej: Balón de fútbol"
-required
+<section
+    id="inicio"
+    class="section active"
 >
 
-</div>
+    <h2>Panel principal</h2>
 
+    <div class="cards">
 
-<div class="campo">
+        <div class="card">
+            <h3>Productos</h3>
+            <strong id="totalProductos">0</strong>
+        </div>
 
-<label>Categoría</label>
+        <div class="card">
+            <h3>Unidades</h3>
+            <strong id="totalUnidades">0</strong>
+        </div>
 
-<select id="categoria" required>
+        <div class="card">
+            <h3>Categorías</h3>
+            <strong id="totalCategorias">0</strong>
+        </div>
 
-</select>
+        <div class="card">
+            <h3>Valor inventario</h3>
+            <strong id="valorInventario">$0</strong>
+        </div>
 
-</div>
+    </div>
 
+    <div class="panel">
 
-<div class="campo">
+        <h2>Bienvenido a Spartak FC</h2>
 
-<label>Cantidad</label>
+        <p>
+            Desde este sistema puedes consultar y administrar
+            el inventario del club.
+        </p>
 
-<input
-type="number"
-id="cantidad"
-min="0"
-placeholder="Ej: 10"
-required
->
+        <br>
 
-</div>
+        <p>
+            Tu usuario actual:
+            <strong id="bienvenidaUsuario"></strong>
+        </p>
 
+        <p>
+            Rol:
+            <strong id="bienvenidaRol"></strong>
+        </p>
 
-<div class="campo">
+    </div>
 
-<label>Precio unitario</label>
-
-<input
-type="number"
-id="precio"
-min="0"
-placeholder="Ej: 50000"
-required
->
-
-</div>
-
-
-<div class="campo">
-
-<label>Estado</label>
-
-<select id="estado">
-
-<option value="Bueno">Bueno</option>
-
-<option value="Regular">Regular</option>
-
-<option value="Malo">Malo</option>
-
-</select>
-
-</div>
-
-
-<div class="campo">
-
-<label>Ubicación</label>
-
-<input
-type="text"
-id="ubicacion"
-placeholder="Ej: Bodega"
->
-
-</div>
-
-
-<div
-class="campo"
-style="grid-column:1/-1;"
->
-
-<label>Observaciones</label>
-
-<input
-type="text"
-id="observaciones"
-placeholder="Observaciones del artículo"
->
-
-</div>
-
-
-</div>
-
-
-<div class="botones">
-
-<button
-type="submit"
-class="btn-principal"
-id="btnGuardar"
->
-➕ Agregar artículo
-</button>
-
-
-<button
-type="button"
-class="btn-cancelar"
-onclick="cancelarEdicion()"
-id="btnCancelar"
-style="display:none;"
->
-Cancelar
-</button>
-
-</div>
-
-
-</form>
-
-</div>
-
-
-<!-- ================= CATEGORIAS ================= -->
-
-<div class="panel">
-
-<h2>🏷️ Administrar categorías</h2>
-
-
-<div class="gestion-categorias">
-
-<input
-type="text"
-id="nuevaCategoria"
-placeholder="Ej: Uniformes"
->
-
-<button
-class="btn-principal"
-onclick="crearCategoria()"
->
-➕ Crear categoría
-</button>
-
-</div>
-
-
-<div
-class="lista-categorias"
-id="listaCategorias"
-></div>
-
-</div>
+</section>
 
 
 <!-- ================= INVENTARIO ================= -->
 
-<div class="panel">
-
-<h2>📋 Inventario Spartak FC</h2>
-
-
-<div class="barra">
-
-<input
-type="text"
-id="buscar"
-placeholder="🔎 Buscar artículo..."
-onkeyup="mostrarInventario()"
+<section
+    id="inventario"
+    class="section"
 >
 
+    <h2>📦 Inventario</h2>
 
-<select
-id="filtroCategoria"
-onchange="mostrarInventario()"
->
+    <!-- FORMULARIO ADMIN -->
 
-<option value="Todas">
-Todas las categorías
-</option>
+    <div
+        class="panel adminOnly"
+        id="formProductoPanel"
+    >
 
-</select>
+        <h3 id="tituloProducto">
+            Agregar producto
+        </h3>
 
-</div>
+        <br>
+
+        <input
+            type="hidden"
+            id="productoID"
+        >
+
+        <div class="grid">
+
+            <div>
+                <label>Producto</label>
+                <input
+                    id="productoNombre"
+                    placeholder="Nombre del producto"
+                >
+            </div>
+
+            <div>
+                <label>Categoría</label>
+                <select id="productoCategoria"></select>
+            </div>
+
+            <div>
+                <label>Cantidad</label>
+                <input
+                    type="number"
+                    id="productoCantidad"
+                    min="0"
+                    value="0"
+                >
+            </div>
+
+            <div>
+                <label>Precio</label>
+                <input
+                    type="number"
+                    id="productoPrecio"
+                    min="0"
+                    value="0"
+                >
+            </div>
+
+            <div>
+                <label>Estado</label>
+
+                <select id="productoEstado">
+
+                    <option value="Bueno">
+                        Bueno
+                    </option>
+
+                    <option value="Regular">
+                        Regular
+                    </option>
+
+                    <option value="Dañado">
+                        Dañado
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div>
+                <label>Ubicación</label>
+
+                <input
+                    id="productoUbicacion"
+                    placeholder="Ej: Bodega"
+                >
+
+            </div>
+
+        </div>
+
+        <label>Observaciones</label>
+
+        <textarea
+            id="productoObservaciones"
+            placeholder="Observaciones"
+        ></textarea>
+
+        <div class="formButtons">
+
+            <button
+                class="btnBlue"
+                onclick="guardarProducto()"
+            >
+                💾 Guardar producto
+            </button>
+
+            <button
+                class="btnGray"
+                onclick="limpiarProducto()"
+            >
+                Limpiar
+            </button>
+
+        </div>
+
+    </div>
 
 
-<div class="tabla-contenedor">
+    <!-- BUSCADOR -->
 
-<table>
+    <div class="panel">
 
-<thead>
+        <div class="grid">
 
-<tr>
+            <div>
 
-<th>ID</th>
+                <label>Buscar</label>
 
-<th>Artículo</th>
+                <input
+                    id="buscar"
+                    placeholder="Buscar producto..."
+                    oninput="dibujarInventario()"
+                >
 
-<th>Categoría</th>
+            </div>
 
-<th>Cantidad</th>
+            <div>
 
-<th>Precio</th>
+                <label>Categoría</label>
 
-<th>Estado</th>
+                <select
+                    id="filtroCategoria"
+                    onchange="dibujarInventario()"
+                >
 
-<th>Ubicación</th>
+                    <option value="">
+                        Todas
+                    </option>
 
-<th>Observaciones</th>
+                </select>
 
-<th>Acciones</th>
+            </div>
 
-</tr>
+        </div>
 
-</thead>
+    </div>
 
 
-<tbody id="tablaInventario">
+    <div class="panel tableContainer">
 
-</tbody>
+        <table>
 
-</table>
+            <thead>
 
-</div>
+                <tr>
 
-</div>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th>Ubicación</th>
+                    <th class="adminButton">Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaInventario"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
 
 
 <!-- ================= ENTRADAS ================= -->
 
-<div class="panel">
-
-<h2>📥 Registrar entrada de mercancía</h2>
-
-
-<div class="formulario">
-
-
-<div class="campo">
-
-<label>Producto</label>
-
-<select id="productoEntrada"></select>
-
-</div>
-
-
-<div class="campo">
-
-<label>Cantidad</label>
-
-<input
-type="number"
-id="cantidadEntrada"
-min="1"
-placeholder="Cantidad recibida"
+<section
+    id="entradas"
+    class="section"
 >
 
-</div>
+    <h2>📥 Registrar entrada</h2>
 
+    <div class="panel">
 
-<div class="campo">
+        <div class="grid">
 
-<label>Responsable</label>
+            <div>
 
-<input
-type="text"
-id="responsableEntrada"
-placeholder="Nombre"
->
+                <label>Producto</label>
 
-</div>
+                <select id="entradaProducto"></select>
 
+            </div>
 
-</div>
+            <div>
 
+                <label>Cantidad</label>
 
-<div class="botones">
+                <input
+                    type="number"
+                    id="entradaCantidad"
+                    min="1"
+                    value="1"
+                >
 
-<button
-class="btn-principal"
-onclick="registrarEntrada()"
->
-📥 Registrar entrada
-</button>
+            </div>
 
-</div>
+        </div>
 
-</div>
+        <label>Observaciones</label>
+
+        <textarea
+            id="entradaObservaciones"
+            placeholder="Ej: Compra de implementos"
+        ></textarea>
+
+        <button
+            class="btnGreen"
+            onclick="registrarEntrada()"
+        >
+            📥 Registrar entrada
+        </button>
+
+    </div>
+
+</section>
 
 
 <!-- ================= SALIDAS ================= -->
 
-<div class="panel">
-
-<h2>📤 Registrar salida / venta</h2>
-
-
-<div class="formulario">
-
-
-<div class="campo">
-
-<label>Producto</label>
-
-<select id="productoSalida"></select>
-
-</div>
-
-
-<div class="campo">
-
-<label>Cantidad</label>
-
-<input
-type="number"
-id="cantidadSalida"
-min="1"
-placeholder="Cantidad"
+<section
+    id="salidas"
+    class="section"
 >
 
-</div>
+    <h2>📤 Registrar salida</h2>
+
+    <div class="panel">
+
+        <div class="grid">
+
+            <div>
+
+                <label>Producto</label>
+
+                <select id="salidaProducto"></select>
+
+            </div>
+
+            <div>
+
+                <label>Cantidad</label>
+
+                <input
+                    type="number"
+                    id="salidaCantidad"
+                    min="1"
+                    value="1"
+                >
+
+            </div>
+
+        </div>
+
+        <label>Observaciones</label>
+
+        <textarea
+            id="salidaObservaciones"
+            placeholder="Ej: Entrega de uniforme"
+        ></textarea>
+
+        <button
+            class="btnRed"
+            onclick="registrarSalida()"
+        >
+            📤 Registrar salida
+        </button>
+
+    </div>
+
+</section>
 
 
-<div class="campo">
+<!-- ================= CATEGORIAS ================= -->
 
-<label>Responsable</label>
-
-<input
-type="text"
-id="responsableSalida"
-placeholder="Nombre"
+<section
+    id="categorias"
+    class="section adminOnly"
 >
 
-</div>
+    <h2>🗂️ Categorías</h2>
+
+    <div class="panel">
+
+        <div class="grid">
+
+            <input
+                id="nuevaCategoria"
+                placeholder="Nombre de la categoría"
+            >
+
+            <button
+                class="btnBlue"
+                onclick="agregarCategoria()"
+            >
+                ➕ Crear categoría
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="panel tableContainer">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaCategorias"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
 
 
-</div>
+<!-- ================= USUARIOS ================= -->
 
-
-<div class="botones">
-
-<button
-class="btn-principal"
-onclick="registrarSalida()"
+<section
+    id="usuarios"
+    class="section adminOnly"
 >
-📤 Registrar salida
-</button>
+
+    <h2>👥 Administración de usuarios</h2>
+
+    <div class="panel">
+
+        <h3>Crear usuario</h3>
+
+        <br>
+
+        <div class="grid">
+
+            <div>
+
+                <label>Usuario</label>
+
+                <input
+                    id="nuevoUsuario"
+                    placeholder="Ej: trabajador2"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Contraseña</label>
+
+                <input
+                    type="password"
+                    id="nuevaPassword"
+                    placeholder="Contraseña"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Rol</label>
+
+                <select id="nuevoRol">
+
+                    <option value="Trabajador">
+                        Trabajador
+                    </option>
+
+                    <option value="Administrador">
+                        Administrador
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <button
+            class="btnBlue"
+            onclick="crearUsuario()"
+        >
+            ➕ Crear usuario
+        </button>
+
+    </div>
+
+
+    <div class="panel tableContainer">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaUsuarios"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</main>
 
 </div>
 
-</div>
 
-
-</div>
-
-
-<div
-class="mensaje"
-id="mensaje"
->
-Operación realizada
-</div>
-
-
-<div
-id="estadoConexion"
-class="conexion desconectado"
->
-🔴 Conectando...
-</div>
+<div id="mensaje"></div>
 
 
 <script>
 
-/* =====================================================
-   CONEXIÓN CON GOOGLE APPS SCRIPT
-===================================================== */
+/*******************************************************
+ * CONFIGURACIÓN
+ *******************************************************/
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxjFN0H4BVbjf4oGPN1K16OEE2fkZbBs4BVEa-fxpjuY6W4aI_E4lsmruJkj3HQDLfJ/exec";
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+let token =
+sessionStorage.getItem("spartak_token") || "";
+
+let usuarioActual =
+sessionStorage.getItem("spartak_usuario") || "";
+
+let rolActual =
+sessionStorage.getItem("spartak_rol") || "";
+
 
 let inventario = [];
 
 let categorias = [];
 
-let editandoId = null;
+let usuarios = [];
 
 
-/* =====================================================
-   LLAMAR A GOOGLE APPS SCRIPT
-===================================================== */
+/*******************************************************
+ * API
+ *******************************************************/
 
 async function llamarAPI(datos){
 
     try{
 
-        const respuesta = await fetch(
+        const respuesta =
+        await fetch(
             API_URL,
             {
                 method:"POST",
 
                 headers:{
-                    "Content-Type":"text/plain;charset=utf-8"
+                    "Content-Type":
+                    "text/plain;charset=utf-8"
                 },
 
-                body:JSON.stringify(datos)
+                body:
+                JSON.stringify(datos)
             }
         );
 
+        const texto =
+        await respuesta.text();
 
-        const texto = await respuesta.text();
-
-        const resultado = JSON.parse(texto);
-
-
-        document.getElementById(
-            "estadoConexion"
-        ).className =
-            "conexion conectado";
-
-
-        document.getElementById(
-            "estadoConexion"
-        ).textContent =
-            "🟢 Google Sheets conectado";
-
+        const resultado =
+        JSON.parse(texto);
 
         return resultado;
 
-
     }catch(error){
+
+        mostrarMensaje(
+            "❌ Error de conexión"
+        );
+
+        document.getElementById(
+            "conexion"
+        ).innerHTML =
+        "🔴 Error de conexión con Google Sheets";
 
         console.error(error);
 
-
-        document.getElementById(
-            "estadoConexion"
-        ).className =
-            "conexion desconectado";
-
-
-        document.getElementById(
-            "estadoConexion"
-        ).textContent =
-            "🔴 Error de conexión";
-
-
-        mostrarMensaje(
-            "No se pudo conectar con Google Sheets"
-        );
-
-
         return {
             ok:false,
-            mensaje:error.message
+            mensaje:"Error de conexión"
         };
 
     }
@@ -923,894 +1130,940 @@ async function llamarAPI(datos){
 }
 
 
-/* =====================================================
-   MENSAJE
-===================================================== */
+/*******************************************************
+ * LOGIN
+ *******************************************************/
 
-function mostrarMensaje(texto){
+async function iniciarSesion(){
 
-    const mensaje =
-        document.getElementById("mensaje");
+    const usuario =
+    document.getElementById(
+        "loginUsuario"
+    ).value.trim();
+
+    const password =
+    document.getElementById(
+        "loginPassword"
+    ).value;
+
+    const error =
+    document.getElementById(
+        "errorLogin"
+    );
+
+    error.innerText = "";
+
+    if(!usuario || !password){
+
+        error.innerText =
+        "Escribe usuario y contraseña.";
+
+        return;
+
+    }
 
 
-    mensaje.textContent = texto;
+    const resultado =
+    await llamarAPI({
 
-    mensaje.style.display = "block";
+        accion:"login",
+
+        usuario:usuario,
+
+        password:password
+
+    });
 
 
-    setTimeout(function(){
+    if(!resultado.ok){
 
-        mensaje.style.display = "none";
+        error.innerText =
+        resultado.mensaje ||
+        "Usuario o contraseña incorrectos.";
 
-    },3000);
+        return;
+
+    }
+
+
+    token =
+    resultado.token;
+
+    usuarioActual =
+    resultado.usuario;
+
+    rolActual =
+    resultado.rol;
+
+
+    sessionStorage.setItem(
+        "spartak_token",
+        token
+    );
+
+    sessionStorage.setItem(
+        "spartak_usuario",
+        usuarioActual
+    );
+
+    sessionStorage.setItem(
+        "spartak_rol",
+        rolActual
+    );
+
+
+    mostrarAplicacion();
 
 }
 
 
-/* =====================================================
-   CARGAR TODO
-===================================================== */
+/*******************************************************
+ * MOSTRAR APLICACION
+ *******************************************************/
 
-async function cargarDatos(){
+function mostrarAplicacion(){
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "usuarioActual"
+    ).innerText =
+    "👤 " + usuarioActual;
+
+
+    document.getElementById(
+        "rolActual"
+    ).innerText =
+    rolActual;
+
+
+    document.getElementById(
+        "bienvenidaUsuario"
+    ).innerText =
+    usuarioActual;
+
+
+    document.getElementById(
+        "bienvenidaRol"
+    ).innerText =
+    rolActual;
+
+
+    if(
+        rolActual ===
+        "Administrador"
+    ){
+
+        document.body.classList.add(
+            "esAdmin"
+        );
+
+    }else{
+
+        document.body.classList.remove(
+            "esAdmin"
+        );
+
+    }
+
+
+    cargarTodo();
+
+}
+
+
+/*******************************************************
+ * CERRAR SESION
+ *******************************************************/
+
+async function cerrarSesion(){
+
+    await llamarAPI({
+
+        accion:"logout",
+
+        token:token
+
+    });
+
+
+    sessionStorage.clear();
+
+    token = "";
+
+    usuarioActual = "";
+
+    rolActual = "";
+
+
+    document.getElementById(
+        "app"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+        "loginUsuario"
+    ).value = "";
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
+
+}
+
+
+/*******************************************************
+ * CARGAR TODO
+ *******************************************************/
+
+async function cargarTodo(){
 
     await cargarCategorias();
 
     await cargarInventario();
 
-}
-
-
-/* =====================================================
-   CARGAR INVENTARIO
-===================================================== */
-
-async function cargarInventario(){
-
-    const resultado =
-        await llamarAPI({
-
-            accion:"obtenerInventario"
-
-        });
-
-
     if(
-        Array.isArray(resultado)
+        rolActual ===
+        "Administrador"
     ){
 
-        inventario =
-            resultado;
-
-    }else{
-
-        inventario = [];
+        await cargarUsuarios();
 
     }
 
-
-    mostrarInventario();
-
-    cargarSelectProductos();
-
 }
 
 
-/* =====================================================
-   CARGAR CATEGORIAS
-===================================================== */
+/*******************************************************
+ * CATEGORIAS
+ *******************************************************/
 
 async function cargarCategorias(){
 
     const resultado =
-        await llamarAPI({
+    await llamarAPI({
 
-            accion:"obtenerCategorias"
+        accion:
+        "obtenerCategorias",
 
-        });
+        token:token
+
+    });
 
 
-    if(
-        Array.isArray(resultado)
-    ){
+    if(!resultado.ok){
 
-        categorias =
-            resultado;
+        if(
+            resultado.mensaje
+            === "Debes iniciar sesión"
+        ){
 
-    }else{
+            cerrarSesion();
 
-        categorias = [];
+        }
+
+        return;
 
     }
 
 
-    cargarCategoriasSelect();
+    categorias =
+    resultado.datos || [];
 
-    mostrarCategoriasAdmin();
-
-}
-
-
-/* =====================================================
-   SELECT CATEGORIAS
-===================================================== */
-
-function cargarCategoriasSelect(){
 
     const select =
-        document.getElementById("categoria");
-
+    document.getElementById(
+        "productoCategoria"
+    );
 
     const filtro =
-        document.getElementById("filtroCategoria");
+    document.getElementById(
+        "filtroCategoria"
+    );
 
 
     select.innerHTML = "";
 
-
     filtro.innerHTML =
-        '<option value="Todas">Todas las categorías</option>';
+    '<option value="">Todas</option>';
 
 
-    categorias.forEach(function(item){
+    categorias.forEach(function(cat){
 
-        const opcion =
-            document.createElement("option");
+        select.innerHTML +=
+        `<option value="${esc(cat.categoria)}">
+            ${esc(cat.categoria)}
+        </option>`;
 
-
-        opcion.value =
-            item.categoria;
-
-
-        opcion.textContent =
-            item.categoria;
-
-
-        select.appendChild(opcion);
-
-
-        const opcionFiltro =
-            document.createElement("option");
-
-
-        opcionFiltro.value =
-            item.categoria;
-
-
-        opcionFiltro.textContent =
-            item.categoria;
-
-
-        filtro.appendChild(
-            opcionFiltro
-        );
+        filtro.innerHTML +=
+        `<option value="${esc(cat.categoria)}">
+            ${esc(cat.categoria)}
+        </option>`;
 
     });
 
-}
 
-
-/* =====================================================
-   MOSTRAR CATEGORIAS
-===================================================== */
-
-function mostrarCategoriasAdmin(){
-
-    const contenedor =
-        document.getElementById(
-            "listaCategorias"
-        );
-
-
-    contenedor.innerHTML = "";
-
-
-    categorias.forEach(function(item){
-
-        const div =
-            document.createElement("div");
-
-
-        div.className =
-            "categoria-admin";
-
-
-        div.innerHTML = `
-
-            <span>${escapeHTML(item.categoria)}</span>
-
-            <button
-                class="categoria-editar"
-                onclick="editarCategoria('${item.id}')"
-            >
-                ✏️
-            </button>
-
-            <button
-                class="categoria-borrar"
-                onclick="eliminarCategoria('${item.id}')"
-            >
-                🗑
-            </button>
-
-        `;
-
-
-        contenedor.appendChild(div);
-
-    });
+    dibujarCategorias();
 
 }
 
 
-/* =====================================================
-   CREAR CATEGORIA
-===================================================== */
-
-async function crearCategoria(){
-
-    const input =
-        document.getElementById(
-            "nuevaCategoria"
-        );
-
-
-    const nombre =
-        input.value.trim();
-
-
-    if(!nombre){
-
-        alert(
-            "Escribe el nombre de la categoría."
-        );
-
-        return;
-
-    }
-
-
-    const resultado =
-        await llamarAPI({
-
-            accion:"agregarCategoria",
-
-            categoria:nombre
-
-        });
-
-
-    if(resultado.ok){
-
-        input.value = "";
-
-        mostrarMensaje(
-            "Categoría creada correctamente"
-        );
-
-
-        await cargarCategorias();
-
-    }else{
-
-        alert(
-            resultado.mensaje ||
-            "No se pudo crear la categoría"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   EDITAR CATEGORIA
-===================================================== */
-
-async function editarCategoria(id){
-
-    const categoria =
-        categorias.find(function(item){
-
-            return String(item.id) ===
-                   String(id);
-
-        });
-
-
-    if(!categoria){
-
-        return;
-
-    }
-
-
-    const nuevoNombre =
-        prompt(
-            "Nuevo nombre de la categoría:",
-            categoria.categoria
-        );
-
-
-    if(
-        nuevoNombre === null
-    ){
-
-        return;
-
-    }
-
-
-    const nombre =
-        nuevoNombre.trim();
-
-
-    if(!nombre){
-
-        alert(
-            "El nombre no puede estar vacío."
-        );
-
-        return;
-
-    }
-
-
-    const resultado =
-        await llamarAPI({
-
-            accion:"editarCategoria",
-
-            id:id,
-
-            categoria:nombre
-
-        });
-
-
-    if(resultado.ok){
-
-        mostrarMensaje(
-            "Categoría actualizada"
-        );
-
-
-        await cargarCategorias();
-
-        await cargarInventario();
-
-    }else{
-
-        alert(
-            resultado.mensaje ||
-            "No se pudo editar"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   ELIMINAR CATEGORIA
-===================================================== */
-
-async function eliminarCategoria(id){
-
-    const categoria =
-        categorias.find(function(item){
-
-            return String(item.id) ===
-                   String(id);
-
-        });
-
-
-    if(!categoria){
-
-        return;
-
-    }
-
-
-    const confirmar =
-        confirm(
-            "¿Seguro que quieres eliminar la categoría " +
-            categoria.categoria +
-            "?"
-        );
-
-
-    if(!confirmar){
-
-        return;
-
-    }
-
-
-    const resultado =
-        await llamarAPI({
-
-            accion:"eliminarCategoria",
-
-            id:id,
-
-            categoria:
-                categoria.categoria
-
-        });
-
-
-    if(resultado.ok){
-
-        mostrarMensaje(
-            "Categoría eliminada"
-        );
-
-
-        await cargarCategorias();
-
-    }else{
-
-        alert(
-            resultado.mensaje ||
-            "No se pudo eliminar"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CREAR / EDITAR PRODUCTO
-===================================================== */
-
-document
-.getElementById("formularioProducto")
-.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-
-        const datos = {
-
-            producto:
-                document
-                .getElementById("nombre")
-                .value
-                .trim(),
-
-            categoria:
-                document
-                .getElementById("categoria")
-                .value,
-
-            cantidad:
-                Number(
-                    document
-                    .getElementById("cantidad")
-                    .value
-                ),
-
-            precio:
-                Number(
-                    document
-                    .getElementById("precio")
-                    .value
-                ),
-
-            estado:
-                document
-                .getElementById("estado")
-                .value,
-
-            ubicacion:
-                document
-                .getElementById("ubicacion")
-                .value
-                .trim(),
-
-            observaciones:
-                document
-                .getElementById("observaciones")
-                .value
-                .trim()
-
-        };
-
-
-        if(!datos.producto){
-
-            alert(
-                "Escribe el nombre del producto."
-            );
-
-            return;
-
-        }
-
-
-        if(editandoId !== null){
-
-            datos.accion =
-                "editarProducto";
-
-            datos.id =
-                editandoId;
-
-
-        }else{
-
-            datos.accion =
-                "agregarProducto";
-
-        }
-
-
-        const resultado =
-            await llamarAPI(datos);
-
-
-        if(resultado.ok){
-
-            mostrarMensaje(
-                resultado.mensaje
-            );
-
-
-            limpiarFormulario();
-
-            await cargarInventario();
-
-        }else{
-
-            alert(
-                resultado.mensaje ||
-                "No se pudo guardar"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   MOSTRAR INVENTARIO
-===================================================== */
-
-function mostrarInventario(){
+/*******************************************************
+ * DIBUJAR CATEGORIAS
+ *******************************************************/
+
+function dibujarCategorias(){
 
     const tabla =
-        document.getElementById(
-            "tablaInventario"
-        );
-
-
-    const busqueda =
-        document
-        .getElementById("buscar")
-        .value
-        .toLowerCase();
-
-
-    const filtro =
-        document
-        .getElementById("filtroCategoria")
-        .value;
-
+    document.getElementById(
+        "tablaCategorias"
+    );
 
     tabla.innerHTML = "";
 
 
-    const resultados =
-        inventario.filter(function(producto){
+    categorias.forEach(function(cat){
 
-            const nombre =
-                String(
-                    producto.producto || ""
-                )
-                .toLowerCase();
+        tabla.innerHTML += `
 
-
-            const categoria =
-                String(
-                    producto.categoria || ""
-                )
-                .toLowerCase();
-
-
-            const ubicacion =
-                String(
-                    producto.ubicacion || ""
-                )
-                .toLowerCase();
-
-
-            const coincideBusqueda =
-
-                nombre.includes(busqueda) ||
-
-                categoria.includes(busqueda) ||
-
-                ubicacion.includes(busqueda);
-
-
-            const coincideCategoria =
-
-                filtro === "Todas" ||
-
-                producto.categoria === filtro;
-
-
-            return (
-                coincideBusqueda &&
-                coincideCategoria
-            );
-
-        });
-
-
-    resultados.forEach(function(producto){
-
-        const fila =
-            document.createElement("tr");
-
-
-        let claseEstado =
-            "bueno";
-
-
-        if(
-            producto.estado === "Regular"
-        ){
-
-            claseEstado =
-                "regular";
-
-        }
-
-
-        if(
-            producto.estado === "Malo"
-        ){
-
-            claseEstado =
-                "malo";
-
-        }
-
-
-        const cantidad =
-            Number(
-                producto.cantidad
-            ) || 0;
-
-
-        const precio =
-            Number(
-                producto.precio
-            ) || 0;
-
-
-        const claseCantidad =
-            cantidad <= 3
-            ? "bajo"
-            : "";
-
-
-        fila.innerHTML = `
+        <tr>
 
             <td>
-                ${escapeHTML(producto.id)}
-            </td>
-
-            <td>
-                <strong>
-                    ${escapeHTML(producto.producto)}
-                </strong>
-            </td>
-
-            <td>
-                ${escapeHTML(producto.categoria)}
-            </td>
-
-            <td class="${claseCantidad}">
-
-                ${cantidad}
-
-                ${
-                    cantidad <= 3
-                    ? " ⚠️"
-                    : ""
-                }
-
-            </td>
-
-            <td>
-                $${formatearNumero(precio)}
+                ${esc(cat.categoria)}
             </td>
 
             <td>
 
-                <span
-                    class="estado ${claseEstado}"
-                >
-
-                    ${escapeHTML(producto.estado)}
-
-                </span>
-
-            </td>
-
-            <td>
-                ${escapeHTML(producto.ubicacion || "-")}
-            </td>
-
-            <td>
-                ${escapeHTML(producto.observaciones || "-")}
-            </td>
-
-            <td>
-
-                <div class="acciones">
+                <div class="actions">
 
                     <button
-                        class="btn-editar"
-                        onclick="editarProducto('${producto.id}')"
+                        class="btnBlue"
+                        onclick="editarCategoria('${escAttr(cat.id)}','${escAttr(cat.categoria)}')"
                     >
                         ✏️ Editar
                     </button>
 
-
                     <button
-                        class="btn-eliminar"
-                        onclick="eliminarProducto('${producto.id}')"
+                        class="btnRed"
+                        onclick="eliminarCategoria('${escAttr(cat.id)}')"
                     >
-                        🗑 Eliminar
+                        🗑️ Eliminar
                     </button>
 
                 </div>
 
             </td>
 
+        </tr>
+
         `;
 
-
-        tabla.appendChild(fila);
-
     });
-
-
-    actualizarEstadisticas();
 
 }
 
 
-/* =====================================================
-   EDITAR PRODUCTO
-===================================================== */
+/*******************************************************
+ * AGREGAR CATEGORIA
+ *******************************************************/
+
+async function agregarCategoria(){
+
+    const nombre =
+    document.getElementById(
+        "nuevaCategoria"
+    ).value.trim();
+
+
+    if(!nombre){
+
+        mostrarMensaje(
+            "Escribe una categoría"
+        );
+
+        return;
+
+    }
+
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "agregarCategoria",
+
+        token:token,
+
+        categoria:nombre
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        document.getElementById(
+            "nuevaCategoria"
+        ).value = "";
+
+        await cargarCategorias();
+
+    }
+
+}
+
+
+/*******************************************************
+ * EDITAR CATEGORIA
+ *******************************************************/
+
+async function editarCategoria(
+    id,
+    nombre
+){
+
+    const nuevo =
+    prompt(
+        "Nuevo nombre de la categoría:",
+        nombre
+    );
+
+
+    if(
+        !nuevo ||
+        nuevo.trim() === ""
+    ){
+        return;
+    }
+
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "editarCategoria",
+
+        token:token,
+
+        id:id,
+
+        categoria:nuevo.trim()
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        await cargarCategorias();
+
+        await cargarInventario();
+
+    }
+
+}
+
+
+/*******************************************************
+ * ELIMINAR CATEGORIA
+ *******************************************************/
+
+async function eliminarCategoria(id){
+
+    if(
+        !confirm(
+            "¿Seguro que quieres eliminar esta categoría?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "eliminarCategoria",
+
+        token:token,
+
+        id:id
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        await cargarCategorias();
+
+    }
+
+}
+
+
+/*******************************************************
+ * INVENTARIO
+ *******************************************************/
+
+async function cargarInventario(){
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "obtenerInventario",
+
+        token:token
+
+    });
+
+
+    if(!resultado.ok){
+
+        mostrarMensaje(
+            resultado.mensaje
+        );
+
+        return;
+
+    }
+
+
+    inventario =
+    resultado.datos || [];
+
+
+    document.getElementById(
+        "conexion"
+    ).innerHTML =
+    "🟢 Google Sheets conectado";
+
+
+    dibujarInventario();
+
+    actualizarDashboard();
+
+    cargarSelectProductos();
+
+}
+
+
+/*******************************************************
+ * DIBUJAR INVENTARIO
+ *******************************************************/
+
+function dibujarInventario(){
+
+    const tabla =
+    document.getElementById(
+        "tablaInventario"
+    );
+
+    const buscar =
+    document.getElementById(
+        "buscar"
+    ).value.toLowerCase();
+
+    const categoria =
+    document.getElementById(
+        "filtroCategoria"
+    ).value;
+
+
+    tabla.innerHTML = "";
+
+
+    const filtrados =
+    inventario.filter(function(p){
+
+        const coincideTexto =
+        String(p.producto)
+        .toLowerCase()
+        .includes(buscar);
+
+        const coincideCategoria =
+        !categoria ||
+        p.categoria === categoria;
+
+        return (
+            coincideTexto &&
+            coincideCategoria
+        );
+
+    });
+
+
+    filtrados.forEach(function(p){
+
+        let claseEstado =
+        "estadoBueno";
+
+        if(Number(p.cantidad) <= 0){
+
+            claseEstado =
+            "estadoAgotado";
+
+        }else if(Number(p.cantidad) <= 5){
+
+            claseEstado =
+            "estadoBajo";
+
+        }
+
+
+        let acciones = "";
+
+        if(
+            rolActual ===
+            "Administrador"
+        ){
+
+            acciones = `
+
+            <div class="actions">
+
+                <button
+                    class="btnBlue"
+                    onclick="editarProducto('${escAttr(p.id)}')"
+                >
+                    ✏️ Editar
+                </button>
+
+                <button
+                    class="btnRed"
+                    onclick="eliminarProducto('${escAttr(p.id)}')"
+                >
+                    🗑️ Eliminar
+                </button>
+
+            </div>
+
+            `;
+
+        }
+
+
+        tabla.innerHTML += `
+
+        <tr>
+
+            <td>
+                <strong>
+                    ${esc(p.producto)}
+                </strong>
+            </td>
+
+            <td>
+                ${esc(p.categoria)}
+            </td>
+
+            <td>
+                <strong>
+                    ${Number(p.cantidad)}
+                </strong>
+            </td>
+
+            <td>
+                $${formatoNumero(p.precio)}
+            </td>
+
+            <td>
+
+                <span class="estado ${claseEstado}">
+
+                    ${esc(p.estado)}
+
+                </span>
+
+            </td>
+
+            <td>
+                ${esc(p.ubicacion)}
+            </td>
+
+            <td class="adminButton">
+                ${acciones}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+/*******************************************************
+ * GUARDAR PRODUCTO
+ *******************************************************/
+
+async function guardarProducto(){
+
+    const id =
+    document.getElementById(
+        "productoID"
+    ).value;
+
+
+    const datos = {
+
+        accion:
+        id ?
+        "editarProducto" :
+        "agregarProducto",
+
+        token:token,
+
+        id:id,
+
+        producto:
+        document.getElementById(
+            "productoNombre"
+        ).value.trim(),
+
+        categoria:
+        document.getElementById(
+            "productoCategoria"
+        ).value,
+
+        cantidad:
+        Number(
+            document.getElementById(
+                "productoCantidad"
+            ).value
+        ),
+
+        precio:
+        Number(
+            document.getElementById(
+                "productoPrecio"
+            ).value
+        ),
+
+        estado:
+        document.getElementById(
+            "productoEstado"
+        ).value,
+
+        ubicacion:
+        document.getElementById(
+            "productoUbicacion"
+        ).value.trim(),
+
+        observaciones:
+        document.getElementById(
+            "productoObservaciones"
+        ).value.trim()
+
+    };
+
+
+    if(!datos.producto){
+
+        mostrarMensaje(
+            "Escribe el nombre del producto"
+        );
+
+        return;
+
+    }
+
+
+    if(!datos.categoria){
+
+        mostrarMensaje(
+            "Selecciona una categoría"
+        );
+
+        return;
+
+    }
+
+
+    const resultado =
+    await llamarAPI(datos);
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        limpiarProducto();
+
+        await cargarInventario();
+
+    }
+
+}
+
+
+/*******************************************************
+ * EDITAR PRODUCTO
+ *******************************************************/
 
 function editarProducto(id){
 
     const producto =
-        inventario.find(function(item){
+    inventario.find(function(p){
 
-            return String(item.id) ===
-                   String(id);
+        return String(p.id) ===
+        String(id);
 
-        });
+    });
 
 
     if(!producto){
-
         return;
-
     }
 
 
-    editandoId =
-        producto.id;
-
-
     document.getElementById(
-        "nombre"
+        "productoID"
     ).value =
-        producto.producto;
+    producto.id;
 
 
     document.getElementById(
-        "categoria"
+        "productoNombre"
     ).value =
-        producto.categoria;
+    producto.producto;
 
 
     document.getElementById(
-        "cantidad"
+        "productoCategoria"
     ).value =
-        producto.cantidad;
+    producto.categoria;
 
 
     document.getElementById(
-        "precio"
+        "productoCantidad"
     ).value =
-        producto.precio;
+    producto.cantidad;
 
 
     document.getElementById(
-        "estado"
+        "productoPrecio"
     ).value =
-        producto.estado;
+    producto.precio;
 
 
     document.getElementById(
-        "ubicacion"
+        "productoEstado"
     ).value =
-        producto.ubicacion || "";
+    producto.estado;
 
 
     document.getElementById(
-        "observaciones"
+        "productoUbicacion"
     ).value =
-        producto.observaciones || "";
+    producto.ubicacion;
 
 
     document.getElementById(
-        "btnGuardar"
-    ).textContent =
-        "💾 Guardar cambios";
+        "productoObservaciones"
+    ).value =
+    producto.observaciones;
 
 
     document.getElementById(
-        "btnCancelar"
-    ).style.display =
-        "inline-block";
+        "tituloProducto"
+    ).innerText =
+    "Editar producto";
+
+
+    mostrarSeccion(
+        "inventario"
+    );
 
 
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
 
 }
 
 
-/* =====================================================
-   ELIMINAR PRODUCTO
-===================================================== */
+/*******************************************************
+ * LIMPIAR PRODUCTO
+ *******************************************************/
+
+function limpiarProducto(){
+
+    document.getElementById(
+        "productoID"
+    ).value = "";
+
+    document.getElementById(
+        "productoNombre"
+    ).value = "";
+
+    document.getElementById(
+        "productoCantidad"
+    ).value = 0;
+
+    document.getElementById(
+        "productoPrecio"
+    ).value = 0;
+
+    document.getElementById(
+        "productoUbicacion"
+    ).value = "";
+
+    document.getElementById(
+        "productoObservaciones"
+    ).value = "";
+
+    document.getElementById(
+        "tituloProducto"
+    ).innerText =
+    "Agregar producto";
+
+}
+
+
+/*******************************************************
+ * ELIMINAR PRODUCTO
+ *******************************************************/
 
 async function eliminarProducto(id){
 
-    const producto =
-        inventario.find(function(item){
-
-            return String(item.id) ===
-                   String(id);
-
-        });
-
-
-    if(!producto){
-
-        return;
-
-    }
-
-
-    const confirmar =
-        confirm(
-            "¿Seguro que quieres eliminar " +
-            producto.producto +
-            "?"
-        );
-
-
-    if(!confirmar){
+    if(
+        !confirm(
+            "¿Seguro que quieres eliminar este producto?"
+        )
+    ){
 
         return;
 
@@ -1818,344 +2071,522 @@ async function eliminarProducto(id){
 
 
     const resultado =
-        await llamarAPI({
+    await llamarAPI({
 
-            accion:"eliminarProducto",
+        accion:
+        "eliminarProducto",
 
-            id:id
+        token:token,
 
-        });
+        id:id
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
 
 
     if(resultado.ok){
 
-        mostrarMensaje(
-            "Artículo eliminado"
-        );
-
-
         await cargarInventario();
-
-    }else{
-
-        alert(
-            resultado.mensaje ||
-            "No se pudo eliminar"
-        );
 
     }
 
 }
 
 
-/* =====================================================
-   CANCELAR EDICION
-===================================================== */
-
-function cancelarEdicion(){
-
-    limpiarFormulario();
-
-}
-
-
-/* =====================================================
-   LIMPIAR FORMULARIO
-===================================================== */
-
-function limpiarFormulario(){
-
-    document
-    .getElementById(
-        "formularioProducto"
-    )
-    .reset();
-
-
-    editandoId = null;
-
-
-    document.getElementById(
-        "btnGuardar"
-    ).textContent =
-        "➕ Agregar artículo";
-
-
-    document.getElementById(
-        "btnCancelar"
-    ).style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-   SELECT DE PRODUCTOS
-===================================================== */
+/*******************************************************
+ * SELECT PRODUCTOS
+ *******************************************************/
 
 function cargarSelectProductos(){
 
     const entrada =
-        document.getElementById(
-            "productoEntrada"
-        );
-
+    document.getElementById(
+        "entradaProducto"
+    );
 
     const salida =
-        document.getElementById(
-            "productoSalida"
-        );
+    document.getElementById(
+        "salidaProducto"
+    );
 
 
     entrada.innerHTML =
-        '<option value="">Seleccione producto</option>';
-
+    '<option value="">Seleccionar producto</option>';
 
     salida.innerHTML =
-        '<option value="">Seleccione producto</option>';
+    '<option value="">Seleccionar producto</option>';
 
 
-    inventario.forEach(function(producto){
+    inventario.forEach(function(p){
 
-        const opcionEntrada =
-            document.createElement("option");
+        entrada.innerHTML += `
 
+        <option value="${escAttr(p.id)}">
 
-        opcionEntrada.value =
-            producto.id;
+            ${esc(p.producto)}
+            — Stock: ${Number(p.cantidad)}
 
+        </option>
 
-        opcionEntrada.textContent =
-            producto.producto +
-            " — Stock: " +
-            producto.cantidad;
+        `;
 
 
-        entrada.appendChild(
-            opcionEntrada
-        );
+        salida.innerHTML += `
 
+        <option value="${escAttr(p.id)}">
 
-        const opcionSalida =
-            document.createElement("option");
+            ${esc(p.producto)}
+            — Stock: ${Number(p.cantidad)}
 
+        </option>
 
-        opcionSalida.value =
-            producto.id;
-
-
-        opcionSalida.textContent =
-            producto.producto +
-            " — Stock: " +
-            producto.cantidad;
-
-
-        salida.appendChild(
-            opcionSalida
-        );
+        `;
 
     });
 
 }
 
 
-/* =====================================================
-   REGISTRAR ENTRADA
-===================================================== */
+/*******************************************************
+ * ENTRADA
+ *******************************************************/
 
 async function registrarEntrada(){
 
-    const idProducto =
-        document.getElementById(
-            "productoEntrada"
-        ).value;
+    const id =
+    document.getElementById(
+        "entradaProducto"
+    ).value;
 
 
     const cantidad =
-        Number(
-            document.getElementById(
-                "cantidadEntrada"
-            ).value
-        );
-
-
-    const responsable =
+    Number(
         document.getElementById(
-            "responsableEntrada"
-        ).value.trim();
-
-
-    if(!idProducto){
-
-        alert(
-            "Selecciona un producto."
-        );
-
-        return;
-
-    }
-
-
-    if(cantidad <= 0){
-
-        alert(
-            "La cantidad debe ser mayor que 0."
-        );
-
-        return;
-
-    }
+            "entradaCantidad"
+        ).value
+    );
 
 
     const producto =
-        inventario.find(function(item){
+    inventario.find(function(p){
 
-            return String(item.id) ===
-                   String(idProducto);
+        return String(p.id) ===
+        String(id);
 
-        });
+    });
+
+
+    if(!producto){
+
+        mostrarMensaje(
+            "Selecciona un producto"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !cantidad ||
+        cantidad <= 0
+    ){
+
+        mostrarMensaje(
+            "Cantidad inválida"
+        );
+
+        return;
+
+    }
 
 
     const resultado =
-        await llamarAPI({
+    await llamarAPI({
 
-            accion:"registrarEntrada",
+        accion:
+        "registrarEntrada",
 
-            idProducto:idProducto,
+        token:token,
 
-            producto:
-                producto
-                ? producto.producto
-                : "",
+        idProducto:id,
 
-            cantidad:cantidad,
+        producto:
+        producto.producto,
 
-            responsable:responsable
+        cantidad:cantidad,
 
-        });
+        observaciones:
+        document.getElementById(
+            "entradaObservaciones"
+        ).value
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
 
 
     if(resultado.ok){
 
-        mostrarMensaje(
-            "Entrada registrada correctamente"
-        );
-
+        document.getElementById(
+            "entradaCantidad"
+        ).value = 1;
 
         document.getElementById(
-            "cantidadEntrada"
+            "entradaObservaciones"
         ).value = "";
 
-
         await cargarInventario();
-
-    }else{
-
-        alert(
-            resultado.mensaje ||
-            "No se pudo registrar la entrada"
-        );
 
     }
 
 }
 
 
-/* =====================================================
-   REGISTRAR SALIDA
-===================================================== */
+/*******************************************************
+ * SALIDA
+ *******************************************************/
 
 async function registrarSalida(){
 
-    const idProducto =
-        document.getElementById(
-            "productoSalida"
-        ).value;
+    const id =
+    document.getElementById(
+        "salidaProducto"
+    ).value;
 
 
     const cantidad =
-        Number(
-            document.getElementById(
-                "cantidadSalida"
-            ).value
-        );
-
-
-    const responsable =
+    Number(
         document.getElementById(
-            "responsableSalida"
-        ).value.trim();
-
-
-    if(!idProducto){
-
-        alert(
-            "Selecciona un producto."
-        );
-
-        return;
-
-    }
-
-
-    if(cantidad <= 0){
-
-        alert(
-            "La cantidad debe ser mayor que 0."
-        );
-
-        return;
-
-    }
+            "salidaCantidad"
+        ).value
+    );
 
 
     const producto =
-        inventario.find(function(item){
+    inventario.find(function(p){
 
-            return String(item.id) ===
-                   String(idProducto);
+        return String(p.id) ===
+        String(id);
 
-        });
+    });
+
+
+    if(!producto){
+
+        mostrarMensaje(
+            "Selecciona un producto"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !cantidad ||
+        cantidad <= 0
+    ){
+
+        mostrarMensaje(
+            "Cantidad inválida"
+        );
+
+        return;
+
+    }
 
 
     const resultado =
-        await llamarAPI({
+    await llamarAPI({
 
-            accion:"registrarSalida",
+        accion:
+        "registrarSalida",
 
-            idProducto:idProducto,
+        token:token,
 
-            producto:
-                producto
-                ? producto.producto
-                : "",
+        idProducto:id,
 
-            cantidad:cantidad,
+        producto:
+        producto.producto,
 
-            responsable:responsable
+        cantidad:cantidad,
 
-        });
+        observaciones:
+        document.getElementById(
+            "salidaObservaciones"
+        ).value
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
 
 
     if(resultado.ok){
 
-        mostrarMensaje(
-            "Salida registrada correctamente"
-        );
-
+        document.getElementById(
+            "salidaCantidad"
+        ).value = 1;
 
         document.getElementById(
-            "cantidadSalida"
+            "salidaObservaciones"
         ).value = "";
-
 
         await cargarInventario();
 
-    }else{
+    }
 
-        alert(
-            resultado.mensaje ||
-            "No se pudo registrar la salida"
+}
+
+
+/*******************************************************
+ * USUARIOS
+ *******************************************************/
+
+async function cargarUsuarios(){
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "obtenerUsuarios",
+
+        token:token
+
+    });
+
+
+    if(!resultado.ok){
+
+        mostrarMensaje(
+            resultado.mensaje
+        );
+
+        return;
+
+    }
+
+
+    usuarios =
+    resultado.datos || [];
+
+
+    const tabla =
+    document.getElementById(
+        "tablaUsuarios"
+    );
+
+
+    tabla.innerHTML = "";
+
+
+    usuarios.forEach(function(u){
+
+        let boton = "";
+
+        if(u.usuario !== "admin"){
+
+            boton = `
+
+            <button
+                class="btnRed"
+                onclick="eliminarUsuario('${escAttr(u.id)}')"
+            >
+                🗑️ Eliminar
+            </button>
+
+            `;
+
+        }
+
+
+        tabla.innerHTML += `
+
+        <tr>
+
+            <td>
+                ${esc(u.usuario)}
+            </td>
+
+            <td>
+                ${esc(u.rol)}
+            </td>
+
+            <td>
+                ${esc(u.activo)}
+            </td>
+
+            <td>
+                ${boton}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+/*******************************************************
+ * CREAR USUARIO
+ *******************************************************/
+
+async function crearUsuario(){
+
+    const usuario =
+    document.getElementById(
+        "nuevoUsuario"
+    ).value.trim();
+
+
+    const password =
+    document.getElementById(
+        "nuevaPassword"
+    ).value;
+
+
+    const rol =
+    document.getElementById(
+        "nuevoRol"
+    ).value;
+
+
+    if(
+        !usuario ||
+        !password
+    ){
+
+        mostrarMensaje(
+            "Completa usuario y contraseña"
+        );
+
+        return;
+
+    }
+
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "agregarUsuario",
+
+        token:token,
+
+        usuario:usuario,
+
+        password:password,
+
+        rol:rol
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        document.getElementById(
+            "nuevoUsuario"
+        ).value = "";
+
+        document.getElementById(
+            "nuevaPassword"
+        ).value = "";
+
+        await cargarUsuarios();
+
+    }
+
+}
+
+
+/*******************************************************
+ * ELIMINAR USUARIO
+ *******************************************************/
+
+async function eliminarUsuario(id){
+
+    if(
+        !confirm(
+            "¿Seguro que quieres eliminar este usuario?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const resultado =
+    await llamarAPI({
+
+        accion:
+        "eliminarUsuario",
+
+        token:token,
+
+        id:id
+
+    });
+
+
+    mostrarMensaje(
+        resultado.mensaje
+    );
+
+
+    if(resultado.ok){
+
+        await cargarUsuarios();
+
+    }
+
+}
+
+
+/*******************************************************
+ * SECCIONES
+ *******************************************************/
+
+function mostrarSeccion(nombre){
+
+    document
+    .querySelectorAll(".section")
+    .forEach(function(sec){
+
+        sec.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    const seccion =
+    document.getElementById(
+        nombre
+    );
+
+
+    if(seccion){
+
+        seccion.classList.add(
+            "active"
         );
 
     }
@@ -2163,117 +2594,108 @@ async function registrarSalida(){
 }
 
 
-/* =====================================================
-   ESTADISTICAS
-===================================================== */
+/*******************************************************
+ * DASHBOARD
+ *******************************************************/
 
-function actualizarEstadisticas(){
+function actualizarDashboard(){
 
-    const totalArticulos =
-        inventario.length;
+    let unidades = 0;
+
+    let valor = 0;
 
 
-    const totalUnidades =
-        inventario.reduce(
-            function(total,producto){
+    inventario.forEach(function(p){
 
-                return total +
-                    (
-                        Number(
-                            producto.cantidad
-                        ) || 0
-                    );
+        unidades +=
+        Number(p.cantidad) || 0;
 
-            },
-            0
+        valor +=
+        (
+            Number(p.cantidad) || 0
+        ) *
+        (
+            Number(p.precio) || 0
         );
 
-
-    const productosBajos =
-        inventario.filter(
-            function(producto){
-
-                return (
-                    Number(
-                        producto.cantidad
-                    ) || 0
-                ) <= 3;
-
-            }
-        ).length;
-
-
-    const valor =
-        inventario.reduce(
-            function(total,producto){
-
-                return total +
-
-                    (
-                        (
-                            Number(
-                                producto.cantidad
-                            ) || 0
-                        )
-
-                        *
-
-                        (
-                            Number(
-                                producto.precio
-                            ) || 0
-                        )
-                    );
-
-            },
-            0
-        );
+    });
 
 
     document.getElementById(
-        "totalArticulos"
-    ).textContent =
-        totalArticulos;
+        "totalProductos"
+    ).innerText =
+    inventario.length;
 
 
     document.getElementById(
         "totalUnidades"
-    ).textContent =
-        totalUnidades;
+    ).innerText =
+    unidades;
 
 
     document.getElementById(
-        "stockBajo"
-    ).textContent =
-        productosBajos;
+        "totalCategorias"
+    ).innerText =
+    categorias.length;
 
 
     document.getElementById(
         "valorInventario"
-    ).textContent =
-        "$" +
-        formatearNumero(valor);
+    ).innerText =
+    "$" + formatoNumero(valor);
 
 }
 
 
-/* =====================================================
-   FORMATO
-===================================================== */
+/*******************************************************
+ * MENSAJE
+ *******************************************************/
 
-function formatearNumero(numero){
+function mostrarMensaje(texto){
 
-    return Number(numero)
-        .toLocaleString("es-CO");
+    const elemento =
+    document.getElementById(
+        "mensaje"
+    );
+
+
+    elemento.innerText =
+    texto;
+
+
+    elemento.style.display =
+    "block";
+
+
+    setTimeout(function(){
+
+        elemento.style.display =
+        "none";
+
+    },3000);
 
 }
 
 
-/* =====================================================
-   SEGURIDAD PARA MOSTRAR TEXTO
-===================================================== */
+/*******************************************************
+ * FORMATO
+ *******************************************************/
 
-function escapeHTML(valor){
+function formatoNumero(numero){
+
+    return Number(numero || 0)
+        .toLocaleString(
+            "es-CO"
+        );
+
+}
+
+
+/*******************************************************
+ * SEGURIDAD HTML
+ *******************************************************/
+
+function esc(valor){
 
     return String(
         valor ?? ""
@@ -2287,15 +2709,37 @@ function escapeHTML(valor){
 }
 
 
-/* =====================================================
-   INICIAR
-===================================================== */
+function escAttr(valor){
 
-cargarDatos();
+    return String(
+        valor ?? ""
+    )
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,"&quot;");
+
+}
+
+
+/*******************************************************
+ * INICIAR
+ *******************************************************/
+
+window.onload = function(){
+
+    if(
+        token &&
+        usuarioActual &&
+        rolActual
+    ){
+
+        mostrarAplicacion();
+
+    }
+
+};
 
 </script>
 
 </body>
-
 </html>
-```
